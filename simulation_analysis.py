@@ -133,7 +133,7 @@ def analyze(mass_data, save_path=None):
     ax1.grid(alpha=0.3)
     ax1.set_xlim(100, 160)
     
-    # ---- Panel 2: Signal Extraction ----
+    # Panel 2: Signal Extract
     ax2 = axes[1]
     
     if fit_ok:
