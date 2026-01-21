@@ -9,9 +9,7 @@ from scipy.optimize import curve_fit
 import os
 
 
-# ============================================================
-# FIT FUNCTIONS
-# ============================================================
+# fit functions
 
 def gaussian(x, amplitude, mean, sigma):
     """Gaussian function for signal"""
@@ -28,9 +26,7 @@ def signal_plus_background(x, amp, mean, sigma, p0, p1, p2, p3):
     return gaussian(x, amp, mean, sigma) + polynomial(x, p0, p1, p2, p3)
 
 
-# ============================================================
-# DATA SIMULATION
-# ============================================================
+# data simulation
 
 def generate_data(n_background=50000, n_signal=500, seed=42):
     """
@@ -67,14 +63,12 @@ def generate_data(n_background=50000, n_signal=500, seed=42):
     return all_data
 
 
-# ============================================================
-# ANALYSIS
-# ============================================================
+# analysis and plotting
 
 def analyze(mass_data, save_path=None):
     """Analyze data and create plots"""
     
-    # Create histogram
+    #histogram
     n_bins = 60
     counts, bin_edges = np.histogram(mass_data, bins=n_bins, range=(100, 160))
     bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
@@ -82,7 +76,7 @@ def analyze(mass_data, save_path=None):
     errors = np.sqrt(counts)
     errors = np.where(errors == 0, 1, errors)
     
-    # Fit full model
+    # Fiting full model
     print("")
     print("Fitting signal + background model...")
     
@@ -117,7 +111,7 @@ def analyze(mass_data, save_path=None):
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
     fig.suptitle("Higgs to Diphoton Simulation Analysis", fontsize=14, fontweight='bold')
     
-    # ---- Panel 1: Data + Fit ----
+    # Panel 1: Data + Fit
     ax1 = axes[0]
     
     ax1.errorbar(bin_centers, counts, yerr=errors, fmt='o', markersize=3,
@@ -164,7 +158,7 @@ def analyze(mass_data, save_path=None):
     ax2.grid(alpha=0.3)
     ax2.set_xlim(100, 160)
     
-    # ---- Panel 3: Results Summary ----
+    #Panel 3: Results Summa
     ax3 = axes[2]
     ax3.axis('off')
     
