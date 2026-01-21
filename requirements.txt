@@ -1,0 +1,13 @@
+uproot>=5.0.0
+awkward>=2.0.0
+vector>=1.0.0
+
+
+numpy>=1.21.0
+scipy>=1.9.0
+
+matplotlib>=3.5.0
+
+
+jupyter
+ipywidgets
